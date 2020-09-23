@@ -36,7 +36,7 @@
           Delete one Darth Vadar's quote. Does nothing if there are no more
           Darth Vadar's quote
         </p>
-        <button id="delete-button">Delete Darth Vadar's quote</button>
+<!--        <button id="delete-button">Delete Darth Vadar's quote</button>-->
       </div>
       <div id="message"></div>
     </section>
@@ -49,9 +49,13 @@
         <li class="quote">
           <span><%= quotes[i].name %></span>:
           <span><%= quotes[i].quote %></span>
+          <button value=<%= quotes[i].name %> class="delete-button">Delete</button>
+          <button value=<%= quotes[i].name %> class="edit-button">Edit</button>
+
         </li>
         <% } %>
       </ul>
+      <input type="text" class="edit-input"/>
     </section>
 
     <script src="/main.js"></script>

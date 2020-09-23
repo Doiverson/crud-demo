@@ -3,15 +3,7 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 
-// ========================
-// Link to Database
-// ========================
-// Updates environment variables
-// @see https://zellwk.com/blog/environment-variables/
-require('./dotenv')
-
-// Replace process.env.DB_URL with your actual connection string
-const connectionString = process.env.DB_URL
+const connectionString = 'mongodb+srv://doiverson:464923323s@cluster0.shg8c.mongodb.net/mongo-pjt?retryWrites=true&w=majority'
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
@@ -46,9 +38,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .catch(error => console.error(error))
     })
 
-    app.put('/quotes', (req, res) => {
+    app.put('/quotes/change', (req, res) => {
       quotesCollection.findOneAndUpdate(
-        { name: 'Yoda' },
+        { name: req.body.name },
         {
           $set: {
             name: req.body.name,
@@ -76,11 +68,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .catch(error => console.error(error))
     })
 
+
     // ========================
     // Listen
     // ========================
     const isProduction = process.env.NODE_ENV === 'production'
-    const port = isProduction ? 7500 : 3000
+    const port = isProduction ? 7500 : 3001
     app.listen(port, function () {
       console.log(`listening on ${port}`)
     })
