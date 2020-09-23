@@ -3,9 +3,9 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 
-const connectionString = 'mongodb+srv://doiverson:464923323s@cluster0.shg8c.mongodb.net/mongo-pjt?retryWrites=true&w=majority'
+let URI = require('./config/Dev')
 
-MongoClient.connect(connectionString, { useUnifiedTopology: true })
+MongoClient.connect(URI, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
     const db = client.db('star-wars-quotes')
